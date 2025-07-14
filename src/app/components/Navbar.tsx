@@ -1,0 +1,94 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+
+export default function Navbar(): JSX.Element {
+  const pathname = usePathname();
+  const [underlineX, setUnderlineX] = useState(0);
+  const [underlineWidth, setUnderlineWidth] = useState(0);
+  const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+
+  const navLinks = [
+    // { href: "/", label: "Hem" },
+    { href: "/gallery", label: "Galleri" },
+    { href: "/nyheter", label: "Nyheter" },
+    { href: "/biografi", label: "Biografi" },
+    { href: "/kontakt", label: "Kontakt" },
+  ];
+
+  // Mät aktiv länkposition
+  useEffect(() => {
+    const activeLink = linkRefs.current[pathname];
+    if (activeLink) {
+      const rect = activeLink.getBoundingClientRect();
+      const containerRect = activeLink.parentElement?.parentElement?.getBoundingClientRect();
+      if (containerRect) {
+        setUnderlineX(rect.left - containerRect.left);
+        setUnderlineWidth(rect.width);
+      }
+    }
+  }, [pathname]);
+
+  return (
+    <nav className="flex items-center w-full px-4 justify-center text-black">
+      <div className="flex flex-col w-full max-w-screen-lg items-center px-4">
+        <div className="flex justify-between w-full align-center text-center pt-4 pb-4">
+          <Link
+            href="/"
+            className="text-2xl sm:text-3xl tracking-wide text-black logo-text pt-1"
+          >
+            Bitte Brun
+          </Link>
+
+          <div className="flex align-baseline items-center">
+            <div className="flex flex-row w-full justify-center align-center items-center gap-4">
+              <a
+                href="https://www.instagram.com/artbittebrun/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                <FaInstagram className="hover:scale-110 text-md hover:text-blue transition-colors rounded-lg" />
+              </a>
+              <a
+                href="https://www.facebook.com/bitte.lindholm.3"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebook className="hover:scale-110 text-md hover:text-blue transition-colors rounded-lg" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative flex justify-center w-full p-2">
+          <ul className="relative flex gap-3">
+            {navLinks.map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  ref={(el) => (linkRefs.current[href] = el)}
+                  className={`text-sm nav-text p-2 transition-colors duration-300 ${
+                    pathname === href ? "text-black" : "text-gray-500 hover:text-black"
+                  }`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+
+            {/* Slide-underline */}
+            <motion.div
+              className="absolute bottom-0 h-[2px] bg-black"
+              layout
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              animate={{ x: underlineX, width: underlineWidth }}
+            />
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+}

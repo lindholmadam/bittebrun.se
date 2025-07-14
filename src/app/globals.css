@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  --font-alex-brush: var(--font-alex-brush);
+  --font-lora: var(--font-lora); 
+  --font-roboto: var(--font-roboto);
+  --font-nunito: var(--font-nunito);
+  --font-playfair-display: var(--font-playfair-display);
+}
+
+body {
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fdfdfd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-family: var(--font-lora);
+}
+
+.lora-text {
+  font-family: var(--font-lora);
+}
+
+.price-text {
+  font-family: var(--font-roboto);
+}
+
+.logo-text {
+  font-family: var(--font-alex-brush);
+}
+
+.nav-text {
+  font-family: var(--font-nunito);
+}
+
+
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px; /* justera beroende på gap */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 16px; /* samma som ovan */
+  background-clip: padding-box;
+}
+.my-masonry-grid_column > div {
+  margin-bottom: 16px;
+}
+
+
+
+.instagram{
+  background: #f09433; 
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+
+
+/* Anpassade animeringar */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up {
+  animation: slide-up 1s ease-out;
+}
+
+
+
+
+
+
+
+
+
+/* Grundstil för input */
+.form-input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(193, 193, 193);
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 18px;
+  color: white;
+  transition: border-bottom 0.3s ease;
+}
+
+/* Fokus-effekt */
+.form-input:focus,
+.form-input:valid {
+  outline: none;
+  border-bottom-color: lightblue;
+}
+
+/* Label-positionering */
+.form-label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  pointer-events: none;
+  font-size: 18px;
+  color: white;
+}
+
+/* Wave-effekt vid fokus */
+.form-input:focus + .form-label span,
+.form-input:valid + .form-label span {
+  color: lightblue;
+  transform: translateY(-24px);
+}
+
+
+/* Autofill hantering för ljus/dark mode */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-input:-webkit-autofill:active {
+  background-color: transparent !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+  border-bottom: 2px solid lightblue !important;
+}
+
+/* Se till att textfärgen alltid syns korrekt */
+/* input, textarea {
+  color: white !important;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.anim {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+.anim::after,
+.anim::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-bottom-color: #fff;
+  animation: rotateA 2s linear infinite 0.5s;
+}
+
+.anim::before {
+  transform: rotate(90deg);
+  animation: rotateB 2s linear infinite;
+}
+
+@keyframes rotateA {
+  0%, 25% {
+      transform: rotate(0deg);
+  }
+  50%, 75% {
+      transform: rotate(180deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateB {
+  0%, 25% {
+      transform: rotate(90deg);
+  }
+  50%, 75% {
+      transform: rotate(270deg);
+  }
+  100% {
+      transform: rotate(450deg);
+  }
+}
