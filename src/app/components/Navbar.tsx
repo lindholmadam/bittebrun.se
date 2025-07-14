@@ -79,7 +79,6 @@ export default function Navbar(): JSX.Element {
               </li>
             ))}
 
-            {/* Slide-underline */}
             <motion.div
               className="absolute bottom-0 h-[2px] bg-black"
               layout

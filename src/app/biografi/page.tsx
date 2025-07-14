@@ -1,11 +1,5 @@
 import Image from "next/image";
 
-export const metadata = {
-  title: "Biografi – Bitte Brun",
-  description:
-    "Läs om Bitte Bruns resa som konstnär. Ett liv präglat av färg, känslor, natur och berättelser vävda in i målningarnas struktur.",
-};
-
 export default function BiografiPage() {
   const paragraphs = [
     "Bitte har alltid dragits till olika konstformer. Att teckna, ett behov av inre stillhet och att skapa med form och färg har följt med som ett inslag från ungdomsåren in i vuxen ålder.",

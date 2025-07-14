@@ -3,12 +3,6 @@
 import dynamic from "next/dynamic";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
-export const metadata = {
-  title: "Kontakt – Bitte Brun",
-  description:
-    "Kontakta konstnären Bitte Brun för frågor om konstverk, samarbeten eller utställningar. Ateljén finns i Täby Kyrkby – varmt välkommen att höra av dig.",
-};
-
 const Map = dynamic(() => import("../components/Map"), { ssr: false });
 
 export default function KontaktPage() {

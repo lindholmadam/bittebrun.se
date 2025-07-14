@@ -2,12 +2,6 @@ import React from "react";
 import Slideshow from "./components/Slideshow";
 import HomeNav from "./components/HomeNav";
 
-export const metadata = {
-  title: "Bitte Brun – Konstnär från Täby",
-  description:
-    "Utforska konstnären Bitte Bruns färgstarka och känslofyllda måleri. Se galleriet, läs biografin och följ kommande utställningar.",
-};
-
 export default function Home() {
   return (
     <div className="relative overflow-hidden">
