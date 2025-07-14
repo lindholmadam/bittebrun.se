@@ -1,5 +1,3 @@
-// File: src/app/components/news/EditNewsModal.tsx
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -49,14 +47,13 @@ export default function EditNewsModal({
 const handleSave = async () => {
   setSaving(true);
 
-  // Kontrollera om länken är ogiltig (om den är ifylld)
   if (eventLink.trim() !== "") {
     try {
-      new URL(eventLink); // Försök skapa en riktig URL
-    } catch (err) {
+      new URL(eventLink);
+    } catch {
       alert("Ogiltig länk. Vänligen ange en korrekt webbadress, t.ex. https://example.com");
       setSaving(false);
-      return; // Stoppa spara-processen
+      return;
     }
   }
 

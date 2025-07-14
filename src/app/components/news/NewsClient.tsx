@@ -27,7 +27,7 @@ export default function NewsClient({
   news: NewsItem[];
   isAdmin: boolean;
 }) {
-  const [allNews, setAllNews] = useState(news);
+  const [allNews] = useState(news);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleUploadSuccess = () => {

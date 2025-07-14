@@ -1,4 +1,4 @@
-import formidable, { File } from "formidable";
+import formidable from "formidable";
 import { NextRequest } from "next/server";
 
 export async function parseForm(req: NextRequest): Promise<{ fields: formidable.Fields; files: formidable.Files }> {

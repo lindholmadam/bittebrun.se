@@ -1,5 +1,3 @@
-// File: src/app/api/images/[id]/route.ts
-
 import { NextResponse } from "next/server";
 import connectToDB from "@/lib/mongoose";
 import Image from "@/models/Image";

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -22,7 +22,6 @@ export default function NewsUploadForm({ onSuccess }: { onSuccess?: () => void }
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

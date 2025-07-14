@@ -2,8 +2,8 @@
 
 import UploadModalNews from "./UploadModalNews";
 import EditNewsModal from "./EditNewsModal";
-import { useState, useEffect } from "react";
-import { FiEdit, FiTrash, FiPlus, FiX } from "react-icons/fi";
+import { useState } from "react";
+import { FiEdit, FiX } from "react-icons/fi";
 import UploadNewsForm from "./NewsUploadForm";
 
 export default function AdminNews({ news: initialNews }: { news: any[] }) {
