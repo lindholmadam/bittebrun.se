@@ -1,12 +1,12 @@
-// src/app/api/auth/[...nextauth]/authOptions.ts
 import connectToDB from "@/lib/mongoose";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcrypt";
+import type { NextAuthOptions } from "next-auth";
 
-const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
@@ -34,8 +34,6 @@ const authOptions = {
           return null;
         }
 
-        console.log("✅ Login successful");
-
         return {
           id: user._id.toString(),
           email: user.email,
@@ -48,5 +46,3 @@ const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
-
-export default authOptions;

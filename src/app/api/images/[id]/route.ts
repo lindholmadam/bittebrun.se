@@ -1,10 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectToDB from "@/lib/mongoose";
 import Image from "@/models/Image";
-import { v2 as cloudinary } from "cloudinary"; 
+import { v2 as cloudinary } from "cloudinary";
 import "@/lib/cloudinary";
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+interface RouteContext {
+  params: { id: string };
+}
+
+// PATCH: Uppdatera en bilds metadata
+export async function PATCH(
+  req: NextRequest,
+  context: RouteContext
+) {
   await connectToDB();
 
   try {
@@ -18,7 +26,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       }
     }
 
-    const updated = await Image.findByIdAndUpdate(params.id, filteredUpdates, {
+    const updated = await Image.findByIdAndUpdate(context.params.id, filteredUpdates, {
       new: true,
     });
 
@@ -33,11 +41,15 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   }
 }
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+// DELETE: Ta bort en bild (inkl. Cloudinary)
+export async function DELETE(
+  req: NextRequest,
+  context: RouteContext
+) {
   await connectToDB();
 
   try {
-    const image = await Image.findById(params.id);
+    const image = await Image.findById(context.params.id);
     if (!image) {
       return NextResponse.json({ error: "Image not found" }, { status: 404 });
     }
@@ -46,7 +58,7 @@ export async function DELETE(_: Request, { params }: { params: { id: string } })
       await cloudinary.uploader.destroy(image.public_id);
     }
 
-    await Image.findByIdAndDelete(params.id);
+    await Image.findByIdAndDelete(context.params.id);
 
     return NextResponse.json({ message: "Image deleted" });
   } catch (err) {

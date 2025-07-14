@@ -1,13 +1,7 @@
 import getImages from "@/lib/getImages";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import GalleryClient from "../components/gallery/GalleryClient";
-
-export const metadata = {
-  title: "Galleri – Bitte Brun",
-  description:
-    "Upptäck Bitte Bruns abstrakta målningar i galleriet. Bläddra bland konstverk som utforskar färg, form och känsla – skapade med passion i Täby Kyrkby.",
-};
 
 export default async function GalleriPage() {
   const rawImages = await getImages();

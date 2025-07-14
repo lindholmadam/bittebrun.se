@@ -1,6 +1,6 @@
 import getNews from "@/lib/getNews";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import NewsClient from "../components/news/NewsClient";
 
 export const metadata = {
