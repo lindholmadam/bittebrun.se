@@ -1,3 +1,5 @@
+// src/app/api/news/[id]/route.ts
+
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import connectToDB from "@/lib/mongoose";
@@ -22,44 +24,44 @@ export async function PATCH(req: Request, contextPromise: Promise<{ params: { id
       const {
         title,
         location,
-        dateFrom,
-        dateTo,
-        timeFrom,
-        timeTo,
+        dateStart,
+        dateEnd,
+        timeStart,
+        timeEnd,
         description,
-        eventLink,
+        url,
       } = body;
 
       existingNews.title = title;
       existingNews.location = location;
-      existingNews.dateFrom = dateFrom;
-      existingNews.dateTo = dateTo;
-      existingNews.timeFrom = timeFrom;
-      existingNews.timeTo = timeTo;
+      existingNews.dateStart = dateStart;
+      existingNews.dateEnd = dateEnd;
+      existingNews.timeStart = timeStart;
+      existingNews.timeEnd = timeEnd;
       existingNews.description = description;
-      existingNews.eventLink = eventLink;
+      existingNews.url = url;
 
     } else if (contentType.includes("multipart/form-data")) {
       const formData = await req.formData();
 
       const title = formData.get("title") as string;
       const location = formData.get("location") as string;
-      const dateFrom = formData.get("dateFrom") as string;
-      const dateTo = formData.get("dateTo") as string;
-      const timeFrom = formData.get("timeFrom") as string;
-      const timeTo = formData.get("timeTo") as string;
+      const dateStart = formData.get("dateStart") as string;
+      const dateEnd = formData.get("dateEnd") as string;
+      const timeStart = formData.get("timeStart") as string;
+      const timeEnd = formData.get("timeEnd") as string;
       const description = formData.get("description") as string;
-      const eventLink = formData.get("eventLink") as string;
+      const url = formData.get("url") as string;
       const newImageFile = formData.get("image") as File | null;
 
       existingNews.title = title;
       existingNews.location = location;
-      existingNews.dateFrom = dateFrom;
-      existingNews.dateTo = dateTo;
-      existingNews.timeFrom = timeFrom;
-      existingNews.timeTo = timeTo;
+      existingNews.dateStart = dateStart;
+      existingNews.dateEnd = dateEnd;
+      existingNews.timeStart = timeStart;
+      existingNews.timeEnd = timeEnd;
       existingNews.description = description;
-      existingNews.eventLink = eventLink;
+      existingNews.url = url;
 
       if (newImageFile) {
         if (existingNews.public_id) {

@@ -4,35 +4,27 @@ import Image from "@/models/Image";
 import { v2 as cloudinary } from "cloudinary";
 import "@/lib/cloudinary";
 
-interface RouteContext {
-  params: { id: string };
-}
-
-// PATCH: Uppdatera en bilds metadata
+// PATCH: uppdatera bildens metadata
 export async function PATCH(
   req: NextRequest,
-  context: RouteContext
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  await connectToDB();
-
   try {
-    const updates = await req.json();
+    const { id } = await params;
+    await connectToDB();
 
+    const updates = await req.json();
     const allowedFields = ["title", "description", "size", "sold", "price", "techniques"];
     const filteredUpdates: Record<string, any> = {};
+
     for (const key of allowedFields) {
       if (key in updates) {
         filteredUpdates[key] = updates[key];
       }
     }
 
-    const updated = await Image.findByIdAndUpdate(context.params.id, filteredUpdates, {
-      new: true,
-    });
-
-    if (!updated) {
-      return NextResponse.json({ error: "Image not found" }, { status: 404 });
-    }
+    const updated = await Image.findByIdAndUpdate(id, filteredUpdates, { new: true });
+    if (!updated) return NextResponse.json({ error: "Image not found" }, { status: 404 });
 
     return NextResponse.json(updated);
   } catch (err) {
@@ -41,15 +33,16 @@ export async function PATCH(
   }
 }
 
-// DELETE: Ta bort en bild (inkl. Cloudinary)
+// DELETE: ta bort en bild och dess Cloudinary-data
 export async function DELETE(
-  req: NextRequest,
-  context: RouteContext
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  await connectToDB();
-
   try {
-    const image = await Image.findById(context.params.id);
+    const { id } = await params;
+    await connectToDB();
+
+    const image = await Image.findById(id);
     if (!image) {
       return NextResponse.json({ error: "Image not found" }, { status: 404 });
     }
@@ -58,11 +51,10 @@ export async function DELETE(
       await cloudinary.uploader.destroy(image.public_id);
     }
 
-    await Image.findByIdAndDelete(context.params.id);
-
-    return NextResponse.json({ message: "Image deleted" });
+    await Image.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Image deleted" }, { status: 200 });
   } catch (err) {
     console.error("DELETE error:", err);
-    return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
