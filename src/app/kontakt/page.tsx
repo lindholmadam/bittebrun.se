@@ -50,7 +50,7 @@ export default function KontaktPage() {
                     <FaInstagram className="hover:scale-110 text-md hover:text-blue-500 transition-transform" />
                   </a>
                   <a
-                    href="https://www.facebook.com/bitte.lindholm.3"
+                    href="https://www.facebook.com/p/artbittebrun-100082864358297/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

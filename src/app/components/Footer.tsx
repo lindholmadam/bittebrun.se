@@ -20,7 +20,7 @@ export default function Footer(): JSX.Element {
             <FaInstagram className="hover:scale-110 text-lg hover:text-blue transition-colors rounded-lg" />
           </a>
           <a
-            href="https://www.facebook.com/bitte.lindholm.3"
+            href="https://www.facebook.com/p/artbittebrun-100082864358297/"
             target="_blank"
             rel="noopener noreferrer"
           >
