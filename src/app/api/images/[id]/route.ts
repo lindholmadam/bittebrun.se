@@ -7,10 +7,10 @@ import "@/lib/cloudinary";
 // PATCH: uppdatera bildens metadata
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     await connectToDB();
 
     const updates = await req.json();
@@ -35,11 +35,11 @@ export async function PATCH(
 
 // DELETE: ta bort en bild och dess Cloudinary-data
 export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     await connectToDB();
 
     const image = await Image.findById(id);

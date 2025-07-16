@@ -6,9 +6,8 @@ import connectToDB from "@/lib/mongoose";
 import News from "@/models/News";
 import { v4 as uuidv4 } from "uuid";
 
-export async function PATCH(req: Request, contextPromise: Promise<{ params: { id: string } }>) {
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
-    const { params } = await contextPromise;
     const { id } = params;
 
     await connectToDB();
@@ -100,9 +99,8 @@ export async function PATCH(req: Request, contextPromise: Promise<{ params: { id
   }
 }
 
-export async function DELETE(req: Request, contextPromise: Promise<{ params: { id: string } }>) {
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
-    const { params } = await contextPromise;
     const { id } = params;
 
     await connectToDB();

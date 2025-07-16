@@ -5,6 +5,7 @@ import connectToDB from "@/lib/mongoose";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FaCircle } from "react-icons/fa";
+import type { GalleryImage } from "@/types";
 
 type Props = {
   params: {
@@ -16,7 +17,8 @@ export default async function SingleImagePage({ params }: Props) {
   const id = params.id;
 
   await connectToDB();
-  const image = await Image.findById(id).lean();
+
+  const image = (await Image.findById(id).lean()) as GalleryImage | null;
 
   if (!image) return notFound();
 
@@ -35,7 +37,9 @@ export default async function SingleImagePage({ params }: Props) {
 
         {/* Bildinformation */}
         <div className="flex flex-col justify-center text-center w-full sm:w-[40%] lg:pr-6 mt-6 px-5 gap-3">
-          <h1 className="text-lg text-center tracking-wide font-semibold mb-3">{image.title}</h1>
+          <h1 className="text-lg text-center tracking-wide font-semibold mb-3">
+            {image.title}
+          </h1>
           <p className="text-md italic">Storlek: {image.size} cm</p>
           {image.sold ? (
             <div className="flex items-center justify-center gap-2">
@@ -46,14 +50,14 @@ export default async function SingleImagePage({ params }: Props) {
             <>
               <div className="flex items-center justify-center gap-2">
                 <FaCircle className="text-xs text-green-600" />
-                <p className="text-md font-semibold">Pris: {image.price.toLocaleString("sv-SE")} SEK</p>
+                <p className="text-md font-semibold">
+                  Pris: {image.price?.toLocaleString("sv-SE")} SEK
+                </p>
               </div>
               {image.price && (
                 <div className="flex w-full justify-center mt-4">
                   <Link href="/kontakt">
-                    <button
-                      className="max-w-[160px] text-sm px-3 py-2 border border-black rounded-full font-semibold transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer"
-                    >
+                    <button className="max-w-[160px] text-sm px-3 py-2 border border-black rounded-full font-semibold transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer">
                       Köpförfrågan
                     </button>
                   </Link>
@@ -82,7 +86,9 @@ export default async function SingleImagePage({ params }: Props) {
       {image.description && (
         <div className="bg-white max-w-screen-lg items-center justify-center w-full mt-3 py-5 sm:px-30">
           <div className="max-w-screen-md px-5">
-            <p className="text-md text-gray-700 whitespace-pre-line">{image.description}</p>
+            <p className="text-md text-gray-700 whitespace-pre-line">
+              {image.description}
+            </p>
           </div>
         </div>
       )}

@@ -19,24 +19,12 @@ import { CSS } from "@dnd-kit/utilities";
 import Masonry from "react-masonry-css";
 import EditImageModal from "./EditImageModal";
 import { FiEdit, FiX } from "react-icons/fi";
+import { GalleryImage } from "@/types"; // Används överallt!
 
-type Image = {
-  _id: string;
-  url: string;
-  title: string;
-  description: string;
-  size: string;
-  sold?: boolean;
-  price?: number;
-  width?: number;
-  height?: number;
-  techniques?: string[];
-};
-
-export default function AdminGallery({ images }: { images: Image[] }) {
+export default function AdminGallery({ images }: { images: GalleryImage[] }) {
   const [items, setItems] = useState(images.map((img) => img._id));
   const [allImages, setAllImages] = useState(images);
-  const [editingImage, setEditingImage] = useState<Image | null>(null);
+  const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
 
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
@@ -59,7 +47,7 @@ export default function AdminGallery({ images }: { images: Image[] }) {
     }
   };
 
-  const updateImage = (updated: Image) => {
+  const updateImage = (updated: GalleryImage) => {
     setAllImages((prev) =>
       prev.map((img) => (img._id === updated._id ? updated : img))
     );
@@ -96,7 +84,7 @@ export default function AdminGallery({ images }: { images: Image[] }) {
       >
         <SortableContext items={items} strategy={rectSortingStrategy}>
           <Masonry
-            breakpointCols={{ default: 4, 1024: 3, 768: 2, 0: 2 }}  // Responsive columns
+            breakpointCols={{ default: 4, 1024: 3, 768: 2, 0: 2 }}
             className="flex w-auto max-w-screen-lg mx-auto gap-6 mt-10"
             columnClassName="space-y-6"
           >
@@ -130,17 +118,12 @@ function DraggableImage({
   onEdit,
   onDelete,
 }: {
-  image: Image;
+  image: GalleryImage;
   onEdit: () => void;
   onDelete: () => void;
 }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id: image._id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: image._id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -184,13 +167,15 @@ function DraggableImage({
   );
 }
 
-function ImageInfo({ image }: { image: Image }) {
+function ImageInfo({ image }: { image: GalleryImage }) {
   return (
     <div className="flex flex-col items-center justify-center p-4 space-y-1">
       {image.sold ? (
         <p className="text-sm text-red-600 font-semibold mt-1">🔴 Såld</p>
       ) : image.price !== undefined ? (
-        <p className="text-sm font-semibold">Pris: {image.price.toLocaleString("sv-SE")} SEK</p>
+        <p className="text-sm font-semibold">
+          Pris: {image.price.toLocaleString("sv-SE")} SEK
+        </p>
       ) : null}
     </div>
   );

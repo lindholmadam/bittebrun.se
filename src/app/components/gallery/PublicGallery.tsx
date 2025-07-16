@@ -40,7 +40,7 @@ const photos = images.map((img) => ({
           ),
         }}
         
-        targetRowHeight={({ containerWidth }) => {
+        targetRowHeight={(containerWidth) => {
             if (containerWidth < 640) return 250;
             if (containerWidth < 1024) return 250;
             return 300; // desktop

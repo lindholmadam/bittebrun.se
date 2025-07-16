@@ -2,25 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { FiX } from "react-icons/fi";
-
-type Image = {
-  _id: string;
-  title: string;
-  description: string;
-  size: string;
-  sold?: boolean;
-  price?: number;
-  techniques?: string[];
-};
+import { GalleryImage } from "@/types"; // <--- Importera här
 
 export default function EditImageModal({
   image,
   onClose,
   onUpdated,
 }: {
-  image: Image;
+  image: GalleryImage;
   onClose: () => void;
-  onUpdated: (updated: Image) => void;
+  onUpdated: (updated: GalleryImage) => void;
 }) {
   const [title, setTitle] = useState(image.title);
   const [description, setDescription] = useState(image.description);

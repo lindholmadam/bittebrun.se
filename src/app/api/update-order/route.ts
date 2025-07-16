@@ -1,5 +1,4 @@
 // src\app\api\update-order\route.ts
-// This file handles the API route for updating the order of images in the database.
 
 import { NextResponse } from "next/server";
 import connectToDB from "@/lib/mongoose";

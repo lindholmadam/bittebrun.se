@@ -20,11 +20,12 @@ async function createUser() {
 
     const email = process.env.ADMIN_EMAIL;
     const plainPassword = process.env.ADMIN_PASSWORD;
-    const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
     if (!email || !plainPassword) {
       throw new Error("ADMIN_EMAIL or ADMIN_PASSWORD is not set in .env.local");
     }
+
+    const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
     const existing = await User.findOne({ email });
     if (existing) {

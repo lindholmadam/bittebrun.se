@@ -10,6 +10,7 @@ type News = {
   dateTo?: string;
   timeFrom?: string;
   timeTo?: string;
+  eventLink?: string;
   url?: string;
   description: string;
 };

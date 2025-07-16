@@ -16,6 +16,11 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials) {
+          console.log("Missing credentials");
+          return null;
+        }
+
         await connectToDB();
         const user = await User.findOne({ email: credentials.email });
 

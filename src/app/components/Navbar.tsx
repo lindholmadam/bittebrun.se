@@ -2,35 +2,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Navbar(): JSX.Element {
   const pathname = usePathname();
-  const [underlineX, setUnderlineX] = useState(0);
-  const [underlineWidth, setUnderlineWidth] = useState(0);
-  const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const navLinks = [
-    // { href: "/", label: "Hem" },
     { href: "/gallery", label: "Galleri" },
     { href: "/nyheter", label: "Nyheter" },
     { href: "/biografi", label: "Biografi" },
     { href: "/kontakt", label: "Kontakt" },
   ];
-
-  // Mät aktiv länkposition
-  useEffect(() => {
-    const activeLink = linkRefs.current[pathname];
-    if (activeLink) {
-      const rect = activeLink.getBoundingClientRect();
-      const containerRect = activeLink.parentElement?.parentElement?.getBoundingClientRect();
-      if (containerRect) {
-        setUnderlineX(rect.left - containerRect.left);
-        setUnderlineWidth(rect.width);
-      }
-    }
-  }, [pathname]);
 
   return (
     <nav className="flex items-center w-full px-4 justify-center text-black">
@@ -49,7 +31,7 @@ export default function Navbar(): JSX.Element {
                 href="https://www.instagram.com/artbittebrun/"
                 target="_blank"
                 rel="noopener noreferrer"
-                >
+              >
                 <FaInstagram className="hover:scale-110 text-md hover:text-blue transition-colors rounded-lg" />
               </a>
               <a
@@ -65,26 +47,29 @@ export default function Navbar(): JSX.Element {
 
         <div className="relative flex justify-center w-full p-2">
           <ul className="relative flex gap-3">
-            {navLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  ref={(el) => (linkRefs.current[href] = el)}
-                  className={`text-sm nav-text p-2 transition-colors duration-300 ${
-                    pathname === href ? "text-black" : "text-gray-500 hover:text-black"
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const isActive = pathname === href;
 
-            <motion.div
-              className="absolute bottom-0 h-[2px] bg-black"
-              layout
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              animate={{ x: underlineX, width: underlineWidth }}
-            />
+              return (
+                <li key={href} className="relative">
+                  <Link
+                    href={href}
+                    className={`text-sm nav-text p-2 transition-colors duration-300 ${
+                      isActive ? "text-black" : "text-gray-500 hover:text-black"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                  {isActive && (
+                    <motion.div
+                      layoutId="underline"
+                      className="absolute bottom-0 left-0 h-[2px] w-full bg-black"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
