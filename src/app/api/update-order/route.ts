@@ -1,5 +1,3 @@
-// src\app\api\update-order\route.ts
-
 import { NextResponse } from "next/server";
 import connectToDB from "@/lib/mongoose";
 import Image from "@/models/Image";

@@ -1,4 +1,3 @@
-// next.config.mjs
 export default {
   experimental: {
     optimizeCss: false
@@ -8,20 +7,3 @@ export default {
     return config;
   }
 };
-
-
-
-// import type { NextConfig } from "next";
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig: NextConfig = {
-//   experimental: {
-//     optimizeCss: false
-//   },
-//   webpack: (config) => {
-//     config.resolve.fallback = { ...config.resolve.fallback, fs: false };
-//     return config;
-//   }
-// };
-
-// export default nextConfig;

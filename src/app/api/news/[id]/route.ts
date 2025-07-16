@@ -1,5 +1,3 @@
-// src/app/api/news/[id]/route.ts
-
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import connectToDB from "@/lib/mongoose";

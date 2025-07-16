@@ -1,4 +1,3 @@
-// src/types.ts
 export type GalleryImage = {
   _id: string;
   url: string;

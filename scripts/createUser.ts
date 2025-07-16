@@ -1,6 +1,6 @@
 import "./loadEnv";
 
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import clientPromise from "../src/lib/mongodb";
 import mongoose from "mongoose";
 

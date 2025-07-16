@@ -1,6 +1,6 @@
 import connectToDB from "@/lib/mongoose";
 import User from "@/models/User";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();

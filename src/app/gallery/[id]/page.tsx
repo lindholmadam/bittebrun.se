@@ -1,5 +1,3 @@
-// File: src/app/gallery/[id]/page.tsx
-
 import Image from "@/models/Image";
 import connectToDB from "@/lib/mongoose";
 import { notFound } from "next/navigation";

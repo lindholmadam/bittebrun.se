@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { FiX } from "react-icons/fi";
-import { GalleryImage } from "@/types"; // <--- Importera här
+import { GalleryImage } from "@/types";
 
 export default function EditImageModal({
   image,

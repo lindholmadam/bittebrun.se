@@ -1,6 +1,3 @@
-// src/lib/getNews.ts
-// Description: This function retrieves all news items from the database, sorted by date (descending).
-
 import connectToDB from "./mongoose";
 import News from "@/models/News";
 

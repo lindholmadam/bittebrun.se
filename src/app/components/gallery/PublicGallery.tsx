@@ -43,7 +43,7 @@ const photos = images.map((img) => ({
         targetRowHeight={(containerWidth) => {
             if (containerWidth < 640) return 250;
             if (containerWidth < 1024) return 250;
-            return 300; // desktop
+            return 300;
         }}
         breakpoints={[640, 1024, 1440]}
         spacing={10}

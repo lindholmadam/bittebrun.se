@@ -1,6 +1,3 @@
-// src\lib\getImages.ts
-// Description: This function retrieves all images from the database, sorted by their sortIndex.
-
 import connectToDB from "./mongoose";
 import Image from "@/models/Image";
 
