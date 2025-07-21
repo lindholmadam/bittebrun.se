@@ -24,7 +24,7 @@ export default function HomeNav(): JSX.Element {
             <li key={href} className="relative">
               <Link
                 href={href}
-                className={`flex flex-row gap-1 justify-center text-md font-semibold tracking-wider transition-colors duration-300 nav-text pl-2 sm:pl-0 ${
+                className={`flex flex-row gap-1 justify-center text-md font-semibold tracking-wider transition-all duration-150 ease-in-out active:scale-95 nav-text pl-2 sm:pl-0 ${
                   isActive ? "text-gray-400" : "text-white hover:text-gray-400"
                 }`}
               >

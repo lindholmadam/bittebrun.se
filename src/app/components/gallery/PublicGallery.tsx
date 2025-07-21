@@ -28,7 +28,7 @@ const photos = images.map((img) => ({
 
         render={{
           image: ( props ) => (
-            <div className="relative group">
+            <div className="relative group transition-all duration-100 ease-in-out active:scale-98">
               <img
                 {...props}
                 className="transition duration-300 group-hover:brightness-75 shadow w-full h-auto"

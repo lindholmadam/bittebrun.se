@@ -11,6 +11,7 @@ const images = [
 
 export default function Slideshow() {
   const [current, setCurrent] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,7 +21,7 @@ export default function Slideshow() {
   }, []);
 
   return (
-    <div className="absolute inset-0 -z-10">
+    <div className="absolute inset-0 -z-10 bg-black">
       {images.map((src, index) => (
         <Image
           key={src}
@@ -28,15 +29,18 @@ export default function Slideshow() {
           alt={`Slide ${index + 1}`}
           fill
           priority={index === 0}
-          className={`object-cover transition-opacity duration-1000 ease-in-out ${
-            index === current ? "opacity-100" : "opacity-0"
+          onLoad={() => index === 0 && setLoaded(true)}
+          className={`object-cover transition-opacity duration-300 ease-in-out ${
+            index === current && loaded ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
-      <div
-        className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-      />
+      {loaded && (
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        />
+      )}
     </div>
   );
 }

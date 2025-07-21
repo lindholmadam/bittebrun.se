@@ -2,10 +2,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Navbar(): JSX.Element {
   const pathname = usePathname();
+  const [pendingPath, setPendingPath] = useState<string | null>(null);
 
   const navLinks = [
     { href: "/gallery", label: "Galleri" },
@@ -13,6 +15,8 @@ export default function Navbar(): JSX.Element {
     { href: "/biografi", label: "Biografi" },
     { href: "/kontakt", label: "Kontakt" },
   ];
+
+  const activePath = pendingPath ?? pathname;
 
   return (
     <nav className="flex items-center w-full px-4 justify-center text-black">
@@ -48,12 +52,13 @@ export default function Navbar(): JSX.Element {
         <div className="relative flex justify-center w-full p-2">
           <ul className="relative flex gap-3">
             {navLinks.map(({ href, label }) => {
-              const isActive = pathname === href;
+              const isActive = activePath === href;
 
               return (
                 <li key={href} className="relative">
                   <Link
                     href={href}
+                    onClick={() => setPendingPath(href)}
                     className={`text-sm nav-text p-2 transition-colors duration-300 ${
                       isActive ? "text-black" : "text-gray-500 hover:text-black"
                     }`}

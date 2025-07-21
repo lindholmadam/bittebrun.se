@@ -1,5 +1,3 @@
-// File: src/app/components/news/NewsUploadForm.tsx
-
 "use client";
 
 import { useState } from "react";
