@@ -17,7 +17,8 @@ export default async function GalleriPage() {
   const rawImages = await getImages();
   const images = JSON.parse(JSON.stringify(rawImages));
   const session = await getServerSession(authOptions);
-  const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
+  const allowedAdmins = [process.env.ADMIN_EMAIL, process.env.ADMIN_EMAIL_TWO];
+  const isAdmin = allowedAdmins.includes(session?.user?.email ?? "");
 
   return (
     <main className="flex flex-col min-h-screen py-10 px-5">

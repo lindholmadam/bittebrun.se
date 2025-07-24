@@ -17,7 +17,8 @@ export default async function NyheterPage() {
   const rawNews = await getNews();
   const news = JSON.parse(JSON.stringify(rawNews));
   const session = await getServerSession(authOptions);
-  const isAdmin = session?.user?.email === process.env.ADMIN_EMAIL;
+  const allowedAdmins = [process.env.ADMIN_EMAIL, process.env.ADMIN_EMAIL_TWO];
+  const isAdmin = allowedAdmins.includes(session?.user?.email ?? "");
 
   return (
     <main className="flex flex-col w-full justify-items-center min-h-screen py-10 px-5">
