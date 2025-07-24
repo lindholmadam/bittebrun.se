@@ -41,7 +41,7 @@ const alexBrush = Alex_Brush({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.bittebrun.se"),
   title: "Bitte Brun – Konstnär",
-  description: "Utforska konstnären Bitte Bruns färgstarka och känslofyllda måleri. Se galleriet, läs biografin och följ kommande utställningar.",
+  description: "Välkommen till Bitte Bruns värld av färg och form. Se hennes konst, följ hennes utställningar och upptäck en personlig konstnärsresa.",
   keywords: ["konst", "konstnär", "akrylmålningar", "målningar", "galleri", "Bitte Brun"],
   authors: [{ name: "Bitte Brun" }],
   creator: "Bitte Brun",

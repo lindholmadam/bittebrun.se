@@ -2,6 +2,16 @@ import React from "react";
 import Slideshow from "./components/Slideshow";
 import HomeNav from "./components/HomeNav";
 
+export const metadata = {
+  title: "Bitte Brun – Konstnär",
+  description:
+    "Välkommen till Bitte Bruns värld av färg och form. Se hennes konst, följ hennes utställningar och upptäck en personlig konstnärsresa.",
+  keywords: ["Bitte Brun", "konst", "svensk konstnär", "utställningar", "målningar", "galleri"],
+  alternates: {
+    canonical: "https://www.bittebrun.se",
+  },
+};
+
 export default function Home() {
   return (
     <div className="relative overflow-hidden">

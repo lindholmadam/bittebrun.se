@@ -1,9 +1,17 @@
-"use client";
-
 import dynamic from "next/dynamic";
-import { FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaInstagram, FaFacebook } from "react-icons/fa"; 
 
 const Map = dynamic(() => import("../components/Map"), { ssr: false });
+
+export const metadata = {
+  title: "Kontakt – Bitte Brun",
+  description:
+    "Kontakta Bitte Brun för frågor om konstverk, bokningar eller besök i hennes ateljé i Täby Kyrkby.",
+  keywords: ["kontakt", "Bitte Brun", "ateljé", "Täby Kyrkby", "konst", "bokningar"],
+  alternates: {
+    canonical: "https://www.bittebrun.se/kontakt",
+  },
+};
 
 export default function KontaktPage() {
   return (

@@ -1,5 +1,15 @@
 import Image from "next/image";
 
+export const metadata = {
+  title: "Biografi – Bitte Brun",
+  description:
+    "Läs om Bitte Bruns konstnärliga resa, från ungdomens uttryck i färg och form till ett liv präglat av reflektion, skapande och inre utveckling.",
+  keywords: ["biografi", "Bitte Brun", "konstnär", "måleri", "konstnärlig resa", "inspiration", "skapande"],
+  alternates: {
+    canonical: "https://www.bittebrun.se/biografi",
+  },
+};
+
 export default function BiografiPage() {
   const paragraphs = [
     "Bitte har alltid dragits till olika konstformer. Att teckna, ett behov av inre stillhet och att skapa med form och färg har följt med som ett inslag från ungdomsåren in i vuxen ålder.",
@@ -18,7 +28,7 @@ export default function BiografiPage() {
 
       <div className="flex flex-col self-center w-full max-w-screen-lg md:flex-row gap-8 items-start">
         {/* Bild */}
-        <div className="w-full md:w-2/5 flex-shrink-0">
+        <div className="w-full md:w-2/5 flex-shrink-0"> 
           <Image
             src="/images/profile_image2.jpg"
             alt="Bitte Brun, konstnär"

@@ -7,6 +7,10 @@ export const metadata = {
   title: "Nyheter – Bitte Brun",
   description:
     "Håll dig uppdaterad med de senaste nyheterna om Bitte Bruns utställningar, event och konstnärliga aktiviteter.",
+  keywords: ["nyheter", "aktuellt", "utställningar", "konstevenemang", "Bitte Brun"],
+  alternates: {
+    canonical: "https://www.bittebrun.se/nyheter",
+  },
 };
 
 export default async function NyheterPage() {

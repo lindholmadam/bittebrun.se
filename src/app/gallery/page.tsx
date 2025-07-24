@@ -3,6 +3,16 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import GalleryClient from "../components/gallery/GalleryClient";
 
+export const metadata = {
+  title: "Galleri – Bitte Brun",
+  description:
+    "Utforska Bitte Bruns konstnärliga verk i galleriet – en samling målningar fyllda av känsla, färg och berättelser.",
+  keywords: ["galleri", "Bitte Brun", "målningar", "konstverk", "konstgalleri", "bilder", "konst"],
+  alternates: {
+    canonical: "https://www.bittebrun.se/gallery",
+  },
+};
+
 export default async function GalleriPage() {
   const rawImages = await getImages();
   const images = JSON.parse(JSON.stringify(rawImages));
