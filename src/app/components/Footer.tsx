@@ -35,7 +35,7 @@ export default function Footer(): JSX.Element {
         <div>
           {status === "loading" ? null : session ? (
             <button
-              onClick={() => signOut({ callbackUrl: "/gallery" })}
+              onClick={() => signOut({ callbackUrl: "/galleri" })}
               className="text-sm lg:text-md hover:underline"
             >
               Logga ut

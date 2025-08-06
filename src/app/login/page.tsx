@@ -19,7 +19,7 @@ export default function LoginPage() {
     if (res?.error) {
       setError("Fel email eller lösenord");
     } else {
-      window.location.href = "/gallery";
+      window.location.href = "/galleri";
     }
   };
 

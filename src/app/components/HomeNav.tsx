@@ -8,7 +8,7 @@ export default function HomeNav(): JSX.Element {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: "/gallery", label: "GALLERI" },
+    { href: "/galleri", label: "GALLERI" },
     { href: "/nyheter", label: "NYHETER" },
     { href: "/biografi", label: "BIOGRAFI" },
     { href: "/kontakt", label: "KONTAKT" },

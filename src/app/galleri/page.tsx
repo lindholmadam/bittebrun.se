@@ -9,8 +9,9 @@ export const metadata = {
     "Utforska Bitte Bruns konstnärliga verk i galleriet – en samling målningar fyllda av känsla, färg och berättelser.",
   keywords: ["galleri", "Bitte Brun", "målningar", "konstverk", "konstgalleri", "bilder", "konst"],
   alternates: {
-    canonical: "https://www.bittebrun.se/gallery",
+    canonical: "https://www.bittebrun.se/galleri",
   },
+  robots: "index, follow",
 };
 
 export default async function GalleriPage() {

@@ -55,7 +55,7 @@ const photos = images.map((img) => ({
             ],
         }}
         onClick={({ photo }) => {
-            router.push(`/gallery/${photo.id}`);
+            router.push(`/galleri/${photo.id}`);
         }}
         />
     </div>

@@ -11,6 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "https://www.bittebrun.se/nyheter",
   },
+  robots: "index, follow",
 };
 
 export default async function NyheterPage() {

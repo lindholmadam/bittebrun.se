@@ -10,7 +10,7 @@ export default function Navbar(): JSX.Element {
   const [pendingPath, setPendingPath] = useState<string | null>(null);
 
   const navLinks = [
-    { href: "/gallery", label: "Galleri" },
+    { href: "/galleri", label: "Galleri" },
     { href: "/nyheter", label: "Nyheter" },
     { href: "/biografi", label: "Biografi" },
     { href: "/kontakt", label: "Kontakt" },
