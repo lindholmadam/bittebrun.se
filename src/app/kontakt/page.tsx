@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
-import { FaInstagram, FaFacebook } from "react-icons/fa"; 
-
-const Map = dynamic(() => import("../components/Map"), { ssr: false });
+import MapLoader from "../components/MapLoader";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export const metadata = {
   title: "Kontakt – Bitte Brun",
@@ -70,7 +68,7 @@ export default function KontaktPage() {
           </div>
 
           <div className="text-center flex-1 w-full overflow-hidden">
-            <Map />
+            <MapLoader />
             <p className="text-sm italic mt-1">Bitte Bruns ateljé på Vikingavägen 45, 187 70, Täby Kyrkby</p>
           </div>
           

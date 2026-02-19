@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoMdArrowDropright } from "react-icons/io";
 
-export default function HomeNav(): JSX.Element {
+export default function HomeNav() {
   const pathname = usePathname();
 
   const navLinks = [

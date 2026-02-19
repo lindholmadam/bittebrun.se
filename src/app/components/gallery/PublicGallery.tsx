@@ -3,12 +3,13 @@
 import { useRouter } from "next/navigation";
 import PhotoAlbum from "react-photo-album";
 import "react-photo-album/styles.css";
+import { optimizedUrl } from "@/lib/cloudinaryUrl";
 
 export default function PublicGallery({ images }: { images: any[] }) {
   const router = useRouter();
 
 const photos = images.map((img) => ({
-  src: img.url,
+  src: optimizedUrl(img.url, 800),
   width: img.width,
   height: img.height,
   id: img._id,
@@ -17,7 +18,7 @@ const photos = images.map((img) => ({
   price: img.price,
   techniques: img.techniques,
 }));
-  
+
 
   return (
     <div className="mx-auto max-w-screen-xl sm:max-w-screen-sm md:max-w-screen-lg overflow-x-hidden">
@@ -31,6 +32,7 @@ const photos = images.map((img) => ({
             <div className="relative group transition-all duration-100 ease-in-out active:scale-98">
               <img
                 {...props}
+                loading="lazy"
                 className="transition duration-300 group-hover:brightness-75 shadow w-full h-auto"
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white bg-gradient-to-t from-black/60 to-transparent">
@@ -39,7 +41,7 @@ const photos = images.map((img) => ({
             </div>
           ),
         }}
-        
+
         targetRowHeight={(containerWidth) => {
             if (containerWidth < 640) return 250;
             if (containerWidth < 1024) return 250;

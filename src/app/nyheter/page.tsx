@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import NewsClient from "../components/news/NewsClient";
 
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Nyheter – Bitte Brun",
   description:

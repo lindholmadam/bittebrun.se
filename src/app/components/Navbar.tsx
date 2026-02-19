@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
-export default function Navbar(): JSX.Element {
+export default function Navbar() {
   const pathname = usePathname();
   const [pendingPath, setPendingPath] = useState<string | null>(null);
 

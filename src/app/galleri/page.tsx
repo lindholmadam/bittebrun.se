@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import GalleryClient from "../components/gallery/GalleryClient";
 
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Galleri – Bitte Brun",
   description:
