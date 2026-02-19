@@ -20,6 +20,7 @@ import Masonry from "react-masonry-css";
 import EditImageModal from "./EditImageModal";
 import { FiEdit, FiX } from "react-icons/fi";
 import { GalleryImage } from "@/types"; // Används överallt!
+import { optimizedUrl } from "@/lib/cloudinaryUrl";
 
 export default function AdminGallery({ images }: { images: GalleryImage[] }) {
   const [items, setItems] = useState(images.map((img) => img._id));
@@ -134,8 +135,9 @@ function DraggableImage({
     <div ref={setNodeRef} style={style} className="relative overflow-hidden">
       <div {...attributes} {...listeners} className="cursor-grab">
         <img
-          src={image.url}
+          src={optimizedUrl(image.url, 400)}
           alt={image.title}
+          loading="lazy"
           className="h-[250px] w-auto object-cover block mx-auto rounded"
         />
       </div>

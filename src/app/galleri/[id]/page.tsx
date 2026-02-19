@@ -4,15 +4,14 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FaCircle } from "react-icons/fa";
 import type { GalleryImage } from "@/types";
+import { optimizedUrl } from "@/lib/cloudinaryUrl";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
 export default async function SingleImagePage({ params }: Props) {
-  const id = params.id;
+  const { id } = await params;
 
   await connectToDB();
 
@@ -27,7 +26,7 @@ export default async function SingleImagePage({ params }: Props) {
         {/* Bild */}
         <div className="flex justify-center w-full sm:w-[60%]">
           <img
-            src={image.url}
+            src={optimizedUrl(image.url)}
             alt={image.title}
             className="max-h-[600px] object-contain shadow-lg"
           />

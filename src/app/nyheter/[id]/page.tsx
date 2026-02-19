@@ -4,15 +4,14 @@ import News from "@/models/News";
 import connectToDB from "@/lib/mongoose";
 import { notFound } from "next/navigation";
 import { NewsItem } from "@/types";
+import { optimizedUrl } from "@/lib/cloudinaryUrl";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
 export default async function SingleNewsPage({ params }: Props) {
-  const id = params.id;
+  const { id } = await params;
 
   await connectToDB();
   const news = (await News.findById(id).lean()) as NewsItem | null;
@@ -38,7 +37,7 @@ export default async function SingleNewsPage({ params }: Props) {
         {/* Bild */}
         <div className="flex justify-center w-full sm:w-[50%]">
           <img
-            src={news.url}
+            src={optimizedUrl(news.url)}
             alt={news.title}
             className="max-h-[600px] object-contain"
           />

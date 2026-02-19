@@ -3,7 +3,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { optimizedUrl } from "@/lib/cloudinaryUrl";
 
 type News = {
   _id: string;
@@ -20,14 +20,6 @@ type News = {
 
 export default function PublicNews({ news }: { news: News[] }) {
   const router = useRouter();
-  const [sortedNews, setSortedNews] = useState<News[]>([]);
-
-  useEffect(() => {
-    const sorted = [...news].sort((a, b) => {
-      return new Date(b.dateFrom || "").getTime() - new Date(a.dateFrom || "").getTime();
-    });
-    setSortedNews(sorted);
-  }, [news]);
 
   // Format date and time display
   const formatDate = (item: News) => {
@@ -41,9 +33,9 @@ export default function PublicNews({ news }: { news: News[] }) {
   };
 
   // Create display-ready photos array
-  const photos = sortedNews.map((item) => ({
+  const photos = news.map((item) => ({
     id: item._id,
-    src: item.url,
+    src: optimizedUrl(item.url, 600),
     alt: item.title || "Nyhet",
     title: item.title,
     description: item.description,
@@ -69,6 +61,7 @@ export default function PublicNews({ news }: { news: News[] }) {
             <img
               src={item.src}
               alt={item.alt}
+              loading="lazy"
               className="w-full h-90 object-contain"
             />
             <div className="p-4 flex flex-col flex-grow">

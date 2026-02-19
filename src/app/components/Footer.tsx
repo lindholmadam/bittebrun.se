@@ -4,7 +4,7 @@ import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 
-export default function Footer(): JSX.Element {
+export default function Footer() {
   const { data: session, status } = useSession(); // Lägg till status
 
   return (
